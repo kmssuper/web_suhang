@@ -4,35 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>이상형 월드컵</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #333;
+        }
+
+        .category-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .category-card {
+            background-color: white;
+            border-radius: 10px;
+            width: 200px;
+            margin: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .category-card:hover {
+            transform: scale(1.05);
+        }
+
+        .category-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .category-card h2 {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .category-card p {
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>이상형 월드컵</h1>
-        <p>당신의 이상형을 선택하세요!</p>
-    </header>
 
-    <main>
-        <section id="matchup" class="matchup">
-            <div class="option" id="option1">
-                <img src="image1.jpg" alt="과목별 이상형 월드컵">
-                <p>qw</p>
-                <button class="select-btn">선택하기</button>
-            </div>
-            <div class="option" id="option2">
-                <img src="image2.jpg" alt="옵션 2">
-                <p>옵션 2 설명</p>
-                <button class="select-btn">선택하기</button>
-            </div>
-        </section>
+<header>
+    <h1>이상형 월드컵</h1>
+    <p>원하는 주제를 선택하세요!</p>
+</header>
 
-        <button id="nextRound" class="hidden">다음 라운드</button>
-    </main>
+<div class="category-container">
+    <div class="category-card">
+        <img src="https://via.placeholder.com/80?text=💕" alt="연예인">
+        <h2>연예인</h2>
+        <p>가장 좋아하는 연예인을 선택해 보세요!</p>
+    </div>
+    <div class="category-card">
+        <img src="https://via.placeholder.com/80?text=🍔" alt="음식">
+        <h2>음식</h2>
+        <p>세상에서 가장 좋아하는 음식을 골라보세요!</p>
+    </div>
+    <div class="category-card">
+        <img src="https://via.placeholder.com/80?text=🐶" alt="동물">
+        <h2>동물</h2>
+        <p>귀여운 동물 중 최고의 동물을 골라보세요!</p>
+    </div>
+    <div class="category-card">
+        <img src="https://via.placeholder.com/80?text=🎮" alt="게임 캐릭터">
+        <h2>게임 캐릭터</h2>
+        <p>인기 게임의 캐릭터를 선택하세요!</p>
+    </div>
+    <div class="category-card">
+        <img src="https://via.placeholder.com/80?text=🎬" alt="영화">
+        <h2>영화</h2>
+        <p>최고의 영화 캐릭터를 골라보세요!</p>
+    </div>
+    <div class="category-card">
+        <img src="https://via.placeholder.com/80?text=🌍" alt="여행지">
+        <h2>여행지</h2>
+        <p>가고 싶은 여행지를 선택하세요!</p>
+    </div>
+</div>
 
-    <footer>
-        <p>2024 이상형 월드컵<br> 7팀 수행자료</p>
-    </footer>
-
-    <script src="script.js"></script>
 </body>
 </html>
