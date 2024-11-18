@@ -2,7 +2,7 @@ let currentMatchup = 0;
 const matchups = [
     {
         option1: { img: './1image/mul.jpg', text: '옵션 1 설명' },
-        option2: { img: 'image2.jpg', text: '옵션 2 설명' },
+        option2: { img: './과목 이미지/수학.jpg', text: '옵션 2 설명' },
     },
     {
         option1: { img: 'image3.jpg', text: '옵션 3 설명' },
