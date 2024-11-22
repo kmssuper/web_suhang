@@ -45,13 +45,6 @@ let matchups = createMatchups(options);
 let currentMatchupIndex = 0; // 현재 진행 중인 매치업
 let winners = []; // 각 라운드에서 선택된 승자
 
-function updateRoundStatus() {
-    const totalMatchups = matchups.length; // 현재 라운드의 총 매치업 수
-    const currentMatchupNumber = currentMatchupIndex + 1; // 현재 매치업 번호
-    const statusText = `${currentRound}강 ${currentMatchupNumber}/${totalMatchups}`;
-    document.getElementById('round-status').innerText = statusText; // 상태 텍스트 업데이트
-}
-
 // 현재 매치업 로드
 function loadMatchup() {
     const matchup = matchups[currentMatchupIndex];
@@ -62,10 +55,11 @@ function loadMatchup() {
     document.getElementById('option2').querySelector('p').innerText = matchup.option2.text;
 }
 
-// 이미지 클릭 이벤트
-document.querySelectorAll('.option').forEach((option, index) => {
-    option.addEventListener('click', function () {
-        const selectedOption = index === 0 ? 'option1' : 'option2';
+// 이미지 클릭 이벤트 연결
+document.querySelectorAll('.matchup img').forEach(img => {
+    img.addEventListener('click', function () {
+        const parent = this.parentElement; // 클릭된 이미지의 부모 요소 가져오기
+        const selectedOption = parent.id === 'option1' ? 'option1' : 'option2';
         winners.push(matchups[currentMatchupIndex][selectedOption]);
 
         currentMatchupIndex++;
@@ -73,16 +67,11 @@ document.querySelectorAll('.option').forEach((option, index) => {
         if (currentMatchupIndex < matchups.length) {
             loadMatchup();
         } else {
+            // 다음 라운드로 넘어가기
             if (winners.length === 1) {
                 alert(`우승자는 "${winners[0].text}"입니다!`);
             } else {
-                currentRound /= 2; // 라운드 반으로 줄이기
-                matchups = winners.reduce((newMatchups, winner, index, array) => {
-                    if (index % 2 === 0) {
-                        newMatchups.push({ option1: array[index], option2: array[index + 1] });
-                    }
-                    return newMatchups;
-                }, []);
+                matchups = createMatchups(winners); // 다음 라운드 매치업 생성
                 winners = [];
                 currentMatchupIndex = 0;
                 loadMatchup();
@@ -91,5 +80,5 @@ document.querySelectorAll('.option').forEach((option, index) => {
     });
 });
 
-// 초기화
+// 첫 번째 매치업 로드
 loadMatchup();
