@@ -7,17 +7,40 @@ function shuffleArray(array) {
     return array;
 }
 
-// 초기 데이터 (16강)
-let matchups = shuffleArray([
-    { option1: { img: './과목 이미지/물리.jpg', text: '옵션 1 설명' }, option2: { img: './과목 이미지/수학.jpg', text: '옵션 2 설명' } },
-    { option1: { img: './과목 이미지/영어.jpg', text: '옵션 3 설명' }, option2: { img: './과목 이미지/웹.jpg', text: '옵션 4 설명' } },
-    { option1: { img: './과목 이미지/일본.jpg', text: '옵션 5 설명' }, option2: { img: './과목 이미지/컴시일.jpg', text: '옵션 6 설명' } },
-    { option1: { img: './과목 이미지/자료.jpg', text: '옵션 7 설명' }, option2: { img: './과목 이미지/한국사.jpg', text: '옵션 8 설명' } },
-    { option1: { img: './과목 이미지/정보.jpg', text: '옵션 9 설명' }, option2: { img: './과목 이미지/한문.jpg', text: '옵션 10 설명' } },
-    { option1: { img: './과목 이미지/중국.jpg', text: '옵션 11 설명' }, option2: { img: 'image12.jpg', text: '옵션 12 설명' } },
-    { option1: { img: './과목 이미지/진로.jpg', text: '옵션 13 설명' }, option2: { img: 'image14.jpg', text: '옵션 14 설명' } },
-    { option1: { img: './과목 이미지/창체.jpg', text: '옵션 15 설명' }, option2: { img: 'image16.jpg', text: '옵션 16 설명' } },
-]);
+// 초기 데이터 (옵션들을 개별적으로 나열)
+let options = [
+    { img: './과목 이미지/물리.jpg', text: '옵션 1 설명' },
+    { img: './과목 이미지/수학.jpg', text: '옵션 2 설명' },
+    { img: './과목 이미지/영어.jpg', text: '옵션 3 설명' },
+    { img: './과목 이미지/웹.jpg', text: '옵션 4 설명' },
+    { img: './과목 이미지/일본.jpg', text: '옵션 5 설명' },
+    { img: './과목 이미지/컴시일.jpg', text: '옵션 6 설명' },
+    { img: './과목 이미지/자료.jpg', text: '옵션 7 설명' },
+    { img: './과목 이미지/한국사.jpg', text: '옵션 8 설명' },
+    { img: './과목 이미지/정보.jpg', text: '옵션 9 설명' },
+    { img: './과목 이미지/한문.jpg', text: '옵션 10 설명' },
+    { img: './과목 이미지/중국.jpg', text: '옵션 11 설명' },
+    { img: 'image12.jpg', text: '옵션 12 설명' },
+    { img: './과목 이미지/진로.jpg', text: '옵션 13 설명' },
+    { img: 'image14.jpg', text: '옵션 14 설명' },
+    { img: './과목 이미지/창체.jpg', text: '옵션 15 설명' },
+    { img: 'image16.jpg', text: '옵션 16 설명' },
+];
+
+// 매치업 생성 함수 (모든 옵션 섞고 두 개씩 묶기)
+function createMatchups(options) {
+    const shuffledOptions = shuffleArray([...options]); // 옵션 섞기
+    const newMatchups = [];
+
+    for (let i = 0; i < shuffledOptions.length; i += 2) {
+        newMatchups.push({ option1: shuffledOptions[i], option2: shuffledOptions[i + 1] });
+    }
+
+    return newMatchups;
+}
+
+// 초기 매치업 생성
+let matchups = createMatchups(options);
 
 let currentMatchupIndex = 0; // 현재 진행 중인 매치업
 let winners = []; // 각 라운드에서 선택된 승자
@@ -47,14 +70,7 @@ document.querySelectorAll('.select-btn').forEach(button => {
             if (winners.length === 1) {
                 alert(`우승자는 "${winners[0].text}"입니다!`);
             } else {
-                matchups = shuffleArray(
-                    winners.reduce((newMatchups, winner, index, array) => {
-                        if (index % 2 === 0) {
-                            newMatchups.push({ option1: array[index], option2: array[index + 1] });
-                        }
-                        return newMatchups;
-                    }, [])
-                );
+                matchups = createMatchups(winners); // 다음 라운드 매치업 생성
                 winners = [];
                 currentMatchupIndex = 0;
                 loadMatchup();
