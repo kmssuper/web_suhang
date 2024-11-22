@@ -62,11 +62,9 @@ function loadMatchup() {
     document.getElementById('option2').querySelector('p').innerText = matchup.option2.text;
 }
 
-// 이미지 클릭 이벤트 연결
-document.querySelectorAll('.matchup img').forEach(img => {
-    img.addEventListener('click', function () {
-        const parent = this.parentElement; // 클릭된 이미지의 부모 요소 가져오기
-        const selectedOption = parent.id === 'option1' ? 'option1' : 'option2';
+document.querySelectorAll('.option').forEach((option, index) => {
+    option.addEventListener('click', function () {
+        const selectedOption = index === 0 ? 'option1' : 'option2';
         winners.push(matchups[currentMatchupIndex][selectedOption]);
 
         currentMatchupIndex++;
@@ -74,11 +72,16 @@ document.querySelectorAll('.matchup img').forEach(img => {
         if (currentMatchupIndex < matchups.length) {
             loadMatchup();
         } else {
-            // 다음 라운드로 넘어가기
             if (winners.length === 1) {
                 alert(`우승자는 "${winners[0].text}"입니다!`);
             } else {
-                matchups = createMatchups(winners); // 다음 라운드 매치업 생성
+                currentRound /= 2; // 라운드 반으로 줄이기
+                matchups = winners.reduce((newMatchups, winner, index, array) => {
+                    if (index % 2 === 0) {
+                        newMatchups.push({ option1: array[index], option2: array[index + 1] });
+                    }
+                    return newMatchups;
+                }, []);
                 winners = [];
                 currentMatchupIndex = 0;
                 loadMatchup();
