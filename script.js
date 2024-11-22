@@ -62,6 +62,7 @@ function loadMatchup() {
     document.getElementById('option2').querySelector('p').innerText = matchup.option2.text;
 }
 
+// 이미지 클릭 이벤트
 document.querySelectorAll('.option').forEach((option, index) => {
     option.addEventListener('click', function () {
         const selectedOption = index === 0 ? 'option1' : 'option2';
