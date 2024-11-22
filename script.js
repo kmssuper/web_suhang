@@ -10,99 +10,47 @@ let matchups = [
     { option1: { img: './과목 이미지/창체.jpg', text: '옵션 15 설명' }, option2: { img: 'image16.jpg', text: '옵션 16 설명' } },
 ];
 
-let currentRound = 16; // 현재 라운드 (16강, 8강, ...)
-let winners = []; // 각 라운드에서 선택된 옵션
+let currentMatchupIndex = 0; // 현재 진행 중인 매치업
+let winners = []; // 각 라운드에서 선택된 승자
 
-// 라운드 타이틀 업데이트
-function updateRoundTitle() {
-    document.getElementById('round-title').innerText = `${currentRound}강`;
+// 현재 매치업 로드
+function loadMatchup() {
+    const matchup = matchups[currentMatchupIndex];
+    document.getElementById('option1').querySelector('img').src = matchup.option1.img;
+    document.getElementById('option1').querySelector('p').innerText = matchup.option1.text;
+
+    document.getElementById('option2').querySelector('img').src = matchup.option2.img;
+    document.getElementById('option2').querySelector('p').innerText = matchup.option2.text;
 }
 
-// 매치업 로드
-function loadMatchups() {
-    const container = document.getElementById('matchups-container');
-    container.innerHTML = ''; // 기존 매치업 초기화
+// 선택 이벤트 핸들러
+document.querySelectorAll('.select-btn').forEach(button => {
+    button.addEventListener('click', function () {
+        const selectedOption = this.parentElement.id === 'option1' ? 'option1' : 'option2';
+        winners.push(matchups[currentMatchupIndex][selectedOption]);
 
-    matchups.forEach((matchup, index) => {
-        // 옵션 1 생성
-        const option1 = createOption(matchup.option1, index, 'option1');
-        // 옵션 2 생성
-        const option2 = createOption(matchup.option2, index, 'option2');
+        currentMatchupIndex++;
 
-        // 매치업 그룹 생성
-        const matchupGroup = document.createElement('div');
-        matchupGroup.classList.add('matchup-group');
-        matchupGroup.appendChild(option1);
-        matchupGroup.appendChild(option2);
-
-        container.appendChild(matchupGroup);
-    });
-}
-
-// 옵션 생성
-function createOption(option, matchupIndex, optionType) {
-    const div = document.createElement('div');
-    div.classList.add('matchup');
-    div.dataset.matchupIndex = matchupIndex;
-    div.dataset.optionType = optionType;
-
-    div.innerHTML = `
-        <img src="${option.img}" alt="${option.text}">
-        <p>${option.text}</p>
-    `;
-
-    div.addEventListener('click', function () {
-        selectWinner(this);
-    });
-
-    return div;
-}
-
-// 옵션 선택
-function selectWinner(selectedOption) {
-    const matchupIndex = selectedOption.dataset.matchupIndex;
-    const optionType = selectedOption.dataset.optionType;
-
-    // 기존 선택 해제
-    document.querySelectorAll(`[data-matchup-index="${matchupIndex}"]`).forEach(option => {
-        option.classList.remove('selected');
-    });
-
-    // 선택 표시
-    selectedOption.classList.add('selected');
-
-    // 승자 저장
-    winners[matchupIndex] = matchups[matchupIndex][optionType];
-
-    // 다음 라운드 버튼 활성화 여부
-    const allSelected = winners.length === matchups.length && winners.every(w => w);
-    document.getElementById('nextRound').classList.toggle('hidden', !allSelected);
-}
-
-// 다음 라운드로 진행
-document.getElementById('nextRound').addEventListener('click', function () {
-    if (currentRound === 2) {
-        // 결승 이후 우승자 출력
-        alert(`우승자는 "${winners[0].text}"입니다!`);
-        return;
-    }
-
-    // 다음 라운드 설정
-    currentRound /= 2;
-    matchups = winners.reduce((acc, winner, index, array) => {
-        if (index % 2 === 0) {
-            acc.push({ option1: array[index], option2: array[index + 1] });
+        if (currentMatchupIndex < matchups.length) {
+            loadMatchup();
+        } else {
+            // 다음 라운드로 넘어가기
+            if (winners.length === 1) {
+                alert(`우승자는 "${winners[0].text}"입니다!`);
+            } else {
+                matchups = winners.reduce((newMatchups, winner, index, array) => {
+                    if (index % 2 === 0) {
+                        newMatchups.push({ option1: array[index], option2: array[index + 1] });
+                    }
+                    return newMatchups;
+                }, []);
+                winners = [];
+                currentMatchupIndex = 0;
+                loadMatchup();
+            }
         }
-        return acc;
-    }, []);
-    winners = [];
-
-    // 라운드 업데이트
-    updateRoundTitle();
-    loadMatchups();
-    this.classList.add('hidden');
+    });
 });
 
-// 초기화
-updateRoundTitle();
-loadMatchups();
+// 첫 번째 매치업 로드
+loadMatchup();
