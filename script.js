@@ -1,4 +1,14 @@
-let matchups = [
+// 매치업 데이터를 셔플하는 함수
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+// 초기 데이터 (16강)
+let matchups = shuffleArray([
     { option1: { img: './과목 이미지/물리.jpg', text: '옵션 1 설명' }, option2: { img: './과목 이미지/수학.jpg', text: '옵션 2 설명' } },
     { option1: { img: './과목 이미지/영어.jpg', text: '옵션 3 설명' }, option2: { img: './과목 이미지/웹.jpg', text: '옵션 4 설명' } },
     { option1: { img: './과목 이미지/일본.jpg', text: '옵션 5 설명' }, option2: { img: './과목 이미지/컴시일.jpg', text: '옵션 6 설명' } },
@@ -7,7 +17,7 @@ let matchups = [
     { option1: { img: './과목 이미지/중국.jpg', text: '옵션 11 설명' }, option2: { img: 'image12.jpg', text: '옵션 12 설명' } },
     { option1: { img: './과목 이미지/진로.jpg', text: '옵션 13 설명' }, option2: { img: 'image14.jpg', text: '옵션 14 설명' } },
     { option1: { img: './과목 이미지/창체.jpg', text: '옵션 15 설명' }, option2: { img: 'image16.jpg', text: '옵션 16 설명' } },
-];
+]);
 
 let currentMatchupIndex = 0; // 현재 진행 중인 매치업
 let winners = []; // 각 라운드에서 선택된 승자
@@ -37,12 +47,14 @@ document.querySelectorAll('.select-btn').forEach(button => {
             if (winners.length === 1) {
                 alert(`우승자는 "${winners[0].text}"입니다!`);
             } else {
-                matchups = winners.reduce((newMatchups, winner, index, array) => {
-                    if (index % 2 === 0) {
-                        newMatchups.push({ option1: array[index], option2: array[index + 1] });
-                    }
-                    return newMatchups;
-                }, []);
+                matchups = shuffleArray(
+                    winners.reduce((newMatchups, winner, index, array) => {
+                        if (index % 2 === 0) {
+                            newMatchups.push({ option1: array[index], option2: array[index + 1] });
+                        }
+                        return newMatchups;
+                    }, [])
+                );
                 winners = [];
                 currentMatchupIndex = 0;
                 loadMatchup();
