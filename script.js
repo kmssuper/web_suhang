@@ -45,6 +45,13 @@ let matchups = createMatchups(options);
 let currentMatchupIndex = 0; // 현재 진행 중인 매치업
 let winners = []; // 각 라운드에서 선택된 승자
 
+function updateRoundStatus() {
+    const totalMatchups = matchups.length; // 현재 라운드의 총 매치업 수
+    const currentMatchupNumber = currentMatchupIndex + 1; // 현재 매치업 번호
+    const statusText = `${currentRound}강 ${currentMatchupNumber}/${totalMatchups}`;
+    document.getElementById('round-status').innerText = statusText; // 상태 텍스트 업데이트
+}
+
 // 현재 매치업 로드
 function loadMatchup() {
     const matchup = matchups[currentMatchupIndex];
