@@ -56,9 +56,11 @@ function loadMatchup() {
 }
 
 // 선택 이벤트 핸들러
-document.querySelectorAll('.select-btn').forEach(button => {
-    button.addEventListener('click', function () {
-        const selectedOption = this.parentElement.id === 'option1' ? 'option1' : 'option2';
+// 이미지 클릭 이벤트 연결
+document.querySelectorAll('.matchup img').forEach(img => {
+    img.addEventListener('click', function () {
+        const parent = this.parentElement; // 클릭된 이미지의 부모 요소 가져오기
+        const selectedOption = parent.id === 'option1' ? 'option1' : 'option2';
         winners.push(matchups[currentMatchupIndex][selectedOption]);
 
         currentMatchupIndex++;
