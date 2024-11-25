@@ -27,14 +27,24 @@ let options = [
     { img: './과목 이미지/부전승.png', text: '부전승입니다.' },
 ];
 
-// 라운드 표시 텍스트 업데이트 함수
 function updateRoundText() {
-    const rounds = ['16강', '8강', '4강', '2강', '결승']; // 라운드 이름
-    const roundIndex = Math.floor(currentMatchupIndex); // 현재 라운드 계산
-    const roundText = rounds[Math.min(roundIndex, rounds.length - 1)]; // 16강, 8강, 4강, 결승 순으로 라운드 표시
+    const totalMatchups = matchups.length; // 총 매치업 수
+    const remainingMatchups = Math.ceil(totalMatchups / 2); // 남은 매치업 수 (진행 중인 라운드의 매치업 수)
+
+    // 라운드 이름을 매치업의 수에 따라 다르게 설정
+    let roundText;
+    if (remainingMatchups === 8) {
+        roundText = "16강";
+    } else if (remainingMatchups === 4) {
+        roundText = "8강";
+    } else if (remainingMatchups === 2) {
+        roundText = "4강";
+    } else if (remainingMatchups === 1) {
+        roundText = "결승";
+    }
+
     document.getElementById('roundText').innerText = `현재 라운드: ${roundText}`;
 }
-
 // 매치업 생성 함수 (모든 옵션 섞고 두 개씩 묶기)
 function createMatchups(options) {
     const shuffledOptions = shuffleArray([...options]); // 옵션 섞기
