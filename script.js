@@ -71,7 +71,6 @@ function loadMatchup() {
         option2.style.pointerEvents = 'auto'; // 클릭 활성화
     }
 }
-}
 
 // 이미지 클릭 이벤트 연결
 document.querySelectorAll('.matchup img').forEach(img => {
