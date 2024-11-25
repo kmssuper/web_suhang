@@ -83,8 +83,6 @@ document.querySelectorAll('.matchup img').forEach(img => {
         }
     });
 });
-    });
-});
 
 // 첫 번째 매치업 로드
 loadMatchup();
