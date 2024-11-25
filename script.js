@@ -30,7 +30,10 @@ let options = [
 function updateRoundText() {
     const totalMatchups = matchups.length; // 총 매치업 수
     const remainingMatchups = Math.ceil(totalMatchups / 2); // 남은 매치업 수 (진행 중인 라운드의 매치업 수)
-
+    
+    while (remainingMatchups > 1) {
+        remainingMatchups = Math.ceil(remainingMatchups / 2);
+    }
     // 라운드 이름을 매치업의 수에 따라 다르게 설정
     let roundText;
     if (totalMatchups === 16) {
