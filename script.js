@@ -67,16 +67,22 @@ document.querySelectorAll('.matchup img').forEach(img => {
         if (currentMatchupIndex < matchups.length) {
             loadMatchup();
         } else {
-            // 다음 라운드로 넘어가기
             if (winners.length === 1) {
-                alert(`우승자는 "${winners[0].text}"입니다!`);
+                // 최종 우승자가 결정되면 우승자 정보를 localStorage에 저장
+                localStorage.setItem("winnerText", winners[0].text);
+                localStorage.setItem("winnerImage", winners[0].img);
+                
+                // 우승자 페이지로 이동
+                window.location.href = "winner.html";
             } else {
-                matchups = createMatchups(winners); // 다음 라운드 매치업 생성
+                matchups = createMatchups(winners);
                 winners = [];
                 currentMatchupIndex = 0;
                 loadMatchup();
             }
         }
+    });
+});
     });
 });
 
