@@ -30,7 +30,7 @@ let options = [
 // 라운드 표시 텍스트 업데이트 함수
 function updateRoundText() {
     const rounds = ['16강', '8강', '4강', '2강', '결승']; // 라운드 이름
-    const roundIndex = Math.floor(currentMatchupIndex / 2); // 현재 라운드 계산
+    const roundIndex = Math.floor(currentMatchupIndex); // 현재 라운드 계산
     const roundText = rounds[Math.min(roundIndex, rounds.length - 1)]; // 16강, 8강, 4강, 결승 순으로 라운드 표시
     document.getElementById('roundText').innerText = `현재 라운드: ${roundText}`;
 }
