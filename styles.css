@@ -31,7 +31,7 @@ main {
     border: 2px solid #ddd;
     border-radius: 10px;
     padding: 10px;
-    background-color: #abcdf5;
+    background-color: white;
     transition: transform 0.2s;
 }
 
