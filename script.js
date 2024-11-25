@@ -53,6 +53,24 @@ function loadMatchup() {
 
     document.getElementById('option2').querySelector('img').src = matchup.option2.img;
     document.getElementById('option2').querySelector('p').innerText = matchup.option2.text;
+    
+    // 부전승 이미지가 포함된 경우 클릭 비활성화 처리
+    if (matchup.option1.text === '부전승입니다.') {
+        option1.querySelector('img').classList.add('disabled'); // 부전승에 disabled 클래스를 추가하여 클릭을 막음
+        option1.style.pointerEvents = 'none'; // 클릭을 비활성화
+    } else {
+        option1.querySelector('img').classList.remove('disabled');
+        option1.style.pointerEvents = 'auto'; // 클릭 활성화
+    }
+
+    if (matchup.option2.text === '부전승입니다.') {
+        option2.querySelector('img').classList.add('disabled');
+        option2.style.pointerEvents = 'none'; // 클릭을 비활성화
+    } else {
+        option2.querySelector('img').classList.remove('disabled');
+        option2.style.pointerEvents = 'auto'; // 클릭 활성화
+    }
+}
 }
 
 // 이미지 클릭 이벤트 연결
