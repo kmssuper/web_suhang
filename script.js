@@ -85,46 +85,6 @@ function loadMatchup() {
         option1.querySelector('img').classList.remove('disabled');
         option1.style.pointerEvents = 'auto'; // 클릭 활성화
     }
-
-    if (matchup.option2.text === '부전승입니다.') {
-        option2.querySelector('img').classList.add('disabled');
-        option2.style.pointerEvents = 'none'; // 클릭을 비활성화
-    } else {
-        option2.querySelector('img').classList.remove('disabled');
-        option2.style.pointerEvents = 'auto'; // 클릭 활성화
-    }
-    // 양쪽 모두 부전승일 경우 처리
-    if (matchup.option1.text === '부전승입니다.' && matchup.option2.text === '부전승입니다.') {
-        // 기존 옵션 숨기기
-        option1.style.display = 'none';
-        option2.style.display = 'none';
-
-        // 메시지와 버튼 생성
-        const messageContainer = document.createElement('div');
-        messageContainer.id = 'messageContainer';
-        messageContainer.style.marginTop = '20px';
-
-        const message = document.createElement('p');
-        message.innerText = '양쪽 모두 부전승입니다. 다음 라운드로 진행하세요!';
-        message.style.fontSize = '18px';
-        message.style.fontWeight = 'bold';
-        message.style.color = '#333';
-
-        const nextButton = document.createElement('button');
-        nextButton.innerText = '다음 라운드로 이동';
-        nextButton.style.marginTop = '10px';
-        nextButton.style.padding = '10px 20px';
-        nextButton.style.fontSize = '16px';
-        nextButton.style.cursor = 'pointer';
-
-        // 버튼 클릭 시 다음 매치업 로드
-        nextButton.addEventListener('click', () => {
-            document.getElementById('messageContainer').remove(); // 메시지와 버튼 제거
-            option1.style.display = 'block'; // 옵션 다시 표시
-            option2.style.display = 'block';
-
-            currentMatchupIndex++;
-    updateRoundText(); // 라운드 텍스트 업데이트
 }
 
 // 이미지 클릭 이벤트 연결
