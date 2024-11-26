@@ -30,8 +30,8 @@ let options = [
 function updateRoundText() {
     const totalMatchups = matchups.length; // 총 매치업 수
     let roundText; // 라운드 이름
-    let roundProgress; // 라운드 진행 상태 (몇 번째 매치업인지)
-    
+    let matchProgress; // 라운드 진행 상태 (몇 번째 매치업인지)
+
     // 라운드 이름 설정
     if (totalMatchups === 16) {
         roundText = "16강";
@@ -44,13 +44,18 @@ function updateRoundText() {
     }
 
     // 진행 상태 (몇 번째 매치업인지) 계산
-    // matchups 배열의 각 요소에 대해 진행 상태를 구하고, 출력하는 부분을 추가
     let matchIndex = 1; // 첫 번째 매치업은 1/8
-    let matchProgress = `${matchIndex}/${totalMatchups / 2}`;
+    let matchProgress = `${matchIndex}/${totalMatchups / 2}`; // 예시: 1/8, 2/8, ...
 
-    // 매치업 상태를 업데이트
-    document.getElementById('roundText').innerText = `현재 라운드: ${roundText} (${matchProgress})`;
+    // matchups 배열에서 각 매치업에 대해 진행 상태를 표시
+    for (let i = 0; i < matchups.length; i++) {
+        matchIndex = i + 1; // 매치업 순서를 1부터 시작하게
+        matchProgress = `${matchIndex}/${totalMatchups / 2}`;
+        // 매치업의 상태를 출력
+        document.getElementById('roundText').innerText = `현재 라운드: ${roundText} (${matchProgress})`;
+    }
 }
+
 
 // 매치업 생성 함수 (모든 옵션 섞고 두 개씩 묶기)
 function createMatchups(options) {
