@@ -33,13 +33,13 @@ function updateRoundText() {
     
     // 라운드 이름을 매치업의 수에 따라 다르게 설정
     let roundText;
-    if (totalMatchups === 16) {
+    if (totalMatchups === 8) {
         roundText = "16강";
-    } else if (totalMatchups === 8) {
-        roundText = "8강";
     } else if (totalMatchups === 4) {
-        roundText = "4강";
+        roundText = "8강";
     } else if (totalMatchups === 2) {
+        roundText = "4강";
+    } else if (totalMatchups === 1) {
         roundText = "결승";
     }
 
