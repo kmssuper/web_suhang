@@ -47,7 +47,7 @@ function updateRoundText() {
     }
 
     document.getElementById('roundText').innerText = 현재 라운드: ${roundText};
-} 
+}
 
 // 매치업 생성 함수 (모든 옵션 섞고 두 개씩 묶기)
 function createMatchups(options) {
