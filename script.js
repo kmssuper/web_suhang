@@ -108,31 +108,34 @@ document.querySelectorAll('.matchup img').forEach(img => {
         // 선택된 옵션을 승자 목록에 추가
         winners.push(matchups[currentMatchupIndex][selectedOption]);
 
-        // 선택 후 짧은 시간 후 강조 효과를 제거
+        // 0.5초 후에 강조 효과를 제거하고, 그 후에 매치업을 로드합니다.
         setTimeout(() => {
             parent.querySelector('img').classList.remove('selected'); // 강조 효과 제거
-        }, 500); // 0.5초 후 제거 (선택된 상태가 유지되는 시간)
+            currentMatchupIndex++; // 매치업 인덱스 증가
 
-        currentMatchupIndex++;
-
-        if (currentMatchupIndex < matchups.length) {
-            loadMatchup();
-        } else {
-            if (winners.length === 1) {
-                // 최종 우승자가 결정되면 우승자 정보를 localStorage에 저장
-                localStorage.setItem("winnerText", winners[0].text);
-                localStorage.setItem("winnerImage", winners[0].img);
-                
-                // 우승자 페이지로 이동
-                window.location.href = "winner.html";
+            // 매치업 로드
+            if (currentMatchupIndex < matchups.length) {
+                loadMatchup(); // 다음 매치업 로드
             } else {
-                matchups = createMatchups(winners);
-                winners = [];
-                currentMatchupIndex = 0;
-                loadMatchup();
+                // 라운드가 끝나면
+                if (winners.length === 1) {
+                    // 최종 우승자가 결정되면 우승자 정보를 localStorage에 저장
+                    localStorage.setItem("winnerText", winners[0].text);
+                    localStorage.setItem("winnerImage", winners[0].img);
+
+                    // 우승자 페이지로 이동
+                    window.location.href = "winner.html";
+                } else {
+                    // 라운드를 새로 시작하면서 매치업을 다시 생성
+                    matchups = createMatchups(winners);
+                    winners = [];
+                    currentMatchupIndex = 0;
+                    loadMatchup(); // 첫 번째 매치업 로드
+                }
             }
-        }
+        }, 500); // 0.5초 후에 다음 매치업으로 넘어감
     });
 });
+
 // 첫 번째 매치업 로드
 loadMatchup();
