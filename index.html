@@ -42,20 +42,22 @@
         }
 
         .category-card {
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-            width: 200px;
-            margin: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.85); /* Make it less transparent */
+            border-radius: 12px;
+            width: 220px; /* Slightly increase width for better visual balance */
+            margin: 20px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* Soft and spread-out shadow */
             text-align: center;
             padding: 20px;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s ease-in-out; /* Smooth transition */
         }
 
         .category-card:hover {
             transform: scale(1.05);
+            box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
         }
+        
 
         .category-card img {
             width: 80px;
