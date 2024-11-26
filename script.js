@@ -36,19 +36,18 @@ function updateRoundText() {
     }
     // 라운드 이름을 매치업의 수에 따라 다르게 설정
     let roundText;
-    if (totalMatchups === 8) {
+    if (totalMatchups === 16) {
         roundText = "16강";
-    } else if (totalMatchups === 4) {
+    } else if (totalMatchups === 8) {
         roundText = "8강";
-    } else if (totalMatchups === 2) {
+    } else if (totalMatchups === 4) {
         roundText = "4강";
-    } else if (totalMatchups === 1) {
+    } else if (totalMatchups === 2) {
         roundText = "결승";
     }
 
     document.getElementById('roundText').innerText = 현재 라운드: ${roundText};
 } 
-
 
 // 매치업 생성 함수 (모든 옵션 섞고 두 개씩 묶기)
 function createMatchups(options) {
