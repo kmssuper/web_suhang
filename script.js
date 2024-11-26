@@ -101,7 +101,17 @@ document.querySelectorAll('.matchup img').forEach(img => {
     img.addEventListener('click', function () {
         const parent = this.parentElement; // 클릭된 이미지의 부모 요소 가져오기
         const selectedOption = parent.id === 'option1' ? 'option1' : 'option2';
+
+        // 클릭된 이미지를 강조하는 효과 추가
+        parent.querySelector('img').classList.add('selected'); // 강조 효과
+
+        // 선택된 옵션을 승자 목록에 추가
         winners.push(matchups[currentMatchupIndex][selectedOption]);
+
+        // 선택 후 짧은 시간 후 강조 효과를 제거
+        setTimeout(() => {
+            parent.querySelector('img').classList.remove('selected'); // 강조 효과 제거
+        }, 500); // 0.5초 후 제거 (선택된 상태가 유지되는 시간)
 
         currentMatchupIndex++;
 
@@ -124,6 +134,5 @@ document.querySelectorAll('.matchup img').forEach(img => {
         }
     });
 });
-
 // 첫 번째 매치업 로드
 loadMatchup();
