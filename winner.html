@@ -41,6 +41,25 @@
             height: 450px;
             margin-top: 20px;
         }
+        .button-container {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -48,6 +67,10 @@
         <h1>최종 우승자</h1>
         <img id="winnerImage" src="" alt="우승자 이미지">
         <p id="winnerText">우승자가 결정되었습니다!</p>
+        <div class="button-container">
+            <button onclick="location.href='index.html'">처음으로</button>
+            <button onclick="location.href='choose.html'">선택 화면으로</button>
+        </div>
     </header>
     
     <script>
