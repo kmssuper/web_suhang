@@ -85,6 +85,7 @@ function loadMatchup() {
         option1.querySelector('img').classList.remove('disabled');
         option1.style.pointerEvents = 'auto'; // 클릭 활성화
     }
+    updateRoundText(); // 라운드 텍스트 업데이트
 }
 
 // 이미지 클릭 이벤트 연결
