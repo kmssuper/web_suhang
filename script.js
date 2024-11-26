@@ -31,9 +31,6 @@ function updateRoundText() {
     const totalMatchups = matchups.length; // 총 매치업 수
     const remainingMatchups = Math.ceil(totalMatchups / 2); // 남은 매치업 수 (진행 중인 라운드의 매치업 수)
     
-    while (remainingMatchups > 1) {
-        remainingMatchups = Math.ceil(remainingMatchups / 2);
-    }
     // 라운드 이름을 매치업의 수에 따라 다르게 설정
     let roundText;
     if (totalMatchups === 16) {
@@ -46,7 +43,12 @@ function updateRoundText() {
         roundText = "결승";
     }
 
-    document.getElementById('roundText').innerText = 현재 라운드: ${roundText};
+    // 진행 상태 텍스트 추가
+    const currentMatchup = currentMatchupIndex + 1; // 현재 진행 중인 매치업
+    const totalMatchupsForRound = totalMatchups / 2; // 총 매치업의 수
+
+    // 라운드 텍스트에 진행 상태 표시 (예: 16강 (1/8), 2/8, ...)
+    document.getElementById('roundText').innerText = `현재 라운드: ${roundText} (${currentMatchup}/${totalMatchupsForRound})`;
 }
 
 // 매치업 생성 함수 (모든 옵션 섞고 두 개씩 묶기)
