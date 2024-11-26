@@ -18,7 +18,7 @@
         }
 
         header {
-            font-family: 'Tenada';
+            font-family:Tenada;
             font-size: 50px;
             text-align: center;
             margin-bottom: 30px;
@@ -30,9 +30,8 @@
            font-weight: normal;
            font-style: normal;
         }
-
         h1 {
-            font-size: 36px;
+               font-size: 36px;
             color: #333;
         }
 
@@ -44,32 +43,18 @@
 
         .category-card {
             background: rgba(255, 255, 255, 0.3);
-            border-radius: 15px;
-            width: 250px;
+            border-radius: 10px;
+            width: 200px;
             margin: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
             padding: 20px;
             cursor: pointer;
             transition: transform 0.3s;
-            position: relative;
-            overflow: hidden;
         }
 
         .category-card:hover {
             transform: scale(1.05);
-        }
-
-        .category-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.1);
-            border-radius: 15px;
-            z-index: -1; /* 배경이 텍스트와 아이콘 뒤로 가도록 설정 */
         }
 
         .category-card img {
@@ -103,12 +88,12 @@
         <h2>과목</h2>
         <p>당신이 제일 좋아하는 과목은?</p>
     </div>
-    <div class="category-card" onclick="window.location.href='choose.html?category=pc_games'">
+    <div class="category-card">
         <img src="https://img.icons8.com/?size=100&id=WglYEda4mby5&format=png&color=000000=🍔" alt="PC게임">
         <h2>PC게임</h2>
-        <p>당신이 제일 좋아하는 PC게임은?</p>
+        <p>당신이 제일 좋아하는 pc게임은?</p>
     </div>
-    <div class="category-card" onclick="window.location.href='choose.html?category=mobile_games'">
+    <div class="category-card">
         <img src="https://img.icons8.com/?size=100&id=120167&format=png&color=000000=🐶" alt="모바일 게임">
         <h2>모바일 게임</h2>
         <p>당신이 제일 좋아하는 모바일 게임은?</p>
