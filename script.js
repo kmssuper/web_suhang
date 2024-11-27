@@ -68,31 +68,66 @@ let matchups = createMatchups(options);
 let currentMatchupIndex = 0; // 현재 진행 중인 매치업
 let winners = []; // 각 라운드에서 선택된 승자
 
-// 현재 매치업 로드
 function loadMatchup() {
     const matchup = matchups[currentMatchupIndex];
+
+    // 매치업 UI 업데이트
     document.getElementById('option1').querySelector('img').src = matchup.option1.img;
     document.getElementById('option1').querySelector('p').innerText = matchup.option1.text;
 
     document.getElementById('option2').querySelector('img').src = matchup.option2.img;
     document.getElementById('option2').querySelector('p').innerText = matchup.option2.text;
-    
-    // 부전승 이미지가 포함된 경우 클릭 비활성화 처리
+
+    // 부전승 처리
+    if (matchup.option1.text === '부전승입니다.' || matchup.option2.text === '부전승입니다.') {
+        // 부전승인 항목 자동 선택
+        const selectedOption = matchup.option1.text === '부전승입니다.' ? matchup.option2 : matchup.option1;
+
+        // 승자를 winners 배열에 추가
+        winners.push(selectedOption);
+
+        // 다음 매치업으로 이동
+        currentMatchupIndex++;
+
+        // 다음 매치업 로드 또는 라운드 종료 처리
+        if (currentMatchupIndex < matchups.length) {
+            setTimeout(() => loadMatchup(), 500); // 0.5초 대기 후 다음 매치업 로드
+        } else {
+            if (winners.length === 1) {
+                // 최종 우승자가 결정된 경우
+                localStorage.setItem("winnerText", winners[0].text);
+                localStorage.setItem("winnerImage", winners[0].img);
+                window.location.href = "winner.html"; // 우승자 페이지로 이동
+            } else {
+                // 새 라운드 시작
+                matchups = createMatchups(winners);
+                winners = [];
+                currentMatchupIndex = 0;
+                setTimeout(() => loadMatchup(), 500); // 첫 번째 매치업 로드
+            }
+        }
+        return; // 부전승 처리 후 함수 종료
+    }
+
+    // 부전승이 없는 경우 클릭 활성화
+    document.getElementById('option1').style.pointerEvents = 'auto';
+    document.getElementById('option2').style.pointerEvents = 'auto';
+
+    // 부전승 이미지 처리
     if (matchup.option1.text === '부전승입니다.') {
-        option1.querySelector('img').classList.add('disabled'); // 부전승에 disabled 클래스를 추가하여 클릭을 막음
-        option1.style.pointerEvents = 'none'; // 클릭을 비활성화
+        document.getElementById('option1').querySelector('img').classList.add('disabled');
+        document.getElementById('option1').style.pointerEvents = 'none';
     } else {
-        option1.querySelector('img').classList.remove('disabled');
-        option1.style.pointerEvents = 'auto'; // 클릭 활성화
+        document.getElementById('option1').querySelector('img').classList.remove('disabled');
     }
 
     if (matchup.option2.text === '부전승입니다.') {
-        option2.querySelector('img').classList.add('disabled');
-        option2.style.pointerEvents = 'none'; // 클릭을 비활성화
+        document.getElementById('option2').querySelector('img').classList.add('disabled');
+        document.getElementById('option2').style.pointerEvents = 'none';
     } else {
-        option2.querySelector('img').classList.remove('disabled');
-        option2.style.pointerEvents = 'auto'; // 클릭 활성화
+        document.getElementById('option2').querySelector('img').classList.remove('disabled');
     }
+
     updateRoundText(); // 라운드 텍스트 업데이트
 }
 
