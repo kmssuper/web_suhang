@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이상형 월드컵</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #vs {
+            position: absolute;
+            font-size: 50px;
+            font-weight: bold;
+            color: #333;
+            z-index: 10;
+            padding: 10px 20px;
+            top: 60%;
+        }
+
+        #nextRound {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>이상형 월드컵</h1>
+        <p>당신의 이상형을 선택하세요!</p>
+    </header>
+
+    <main>
+        <div id="roundText" style="font-size: 20px; margin: 20px;"></div>
+        <section id="matchup" class="matchup">
+        <div id="matchup" class="matchup">
+            <div class="option" id="option1">
+                <img src="" alt="">
+                <p></p>
+            </div>
+            <div id="vs">VS</div>
+            <div class="option" id="option2">
+                <img src="" alt="">
+                <p></p>
+            </div>
+        </section>
+
+        <button id="nextRound" class="hidden">다음 라운드</button>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
