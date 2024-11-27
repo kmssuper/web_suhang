@@ -50,51 +50,37 @@ function updateRoundText() {
     document.getElementById('roundText').innerText = `현재 라운드: ${roundText} (${currentMatchup}/${totalMatchups})`;
 }
 
-// 매치업 생성 함수 (모든 옵션 섞고 두 개씩 묶기)
-function createMatchups(options) {
-    const shuffledOptions = shuffleArray([...options]); // 옵션 섞기
-    const newMatchups = [];
-
-    for (let i = 0; i < shuffledOptions.length; i += 2) {
-        newMatchups.push({ option1: shuffledOptions[i], option2: shuffledOptions[i + 1] });
-    }
-
-    return newMatchups;
-}
-
-// 초기 매치업 생성
-let matchups = createMatchups(options);
-
-let currentMatchupIndex = 0; // 현재 진행 중인 매치업
-let winners = []; // 각 라운드에서 선택된 승자
-
 function loadMatchup() {
     const matchup = matchups[currentMatchupIndex];
 
     // 매치업 UI 업데이트
-    document.getElementById('option1').querySelector('img').src = matchup.option1.img;
-    document.getElementById('option1').querySelector('p').innerText = matchup.option1.text;
+    const option1Element = document.getElementById('option1');
+    const option2Element = document.getElementById('option2');
 
-    document.getElementById('option2').querySelector('img').src = matchup.option2.img;
-    document.getElementById('option2').querySelector('p').innerText = matchup.option2.text;
+    option1Element.querySelector('img').src = matchup.option1.img;
+    option1Element.querySelector('p').innerText = matchup.option1.text;
+
+    option2Element.querySelector('img').src = matchup.option2.img;
+    option2Element.querySelector('p').innerText = matchup.option2.text;
 
     // 부전승 처리
     if (matchup.option1.text === '부전승입니다.' || matchup.option2.text === '부전승입니다.') {
         // 부전승인 항목 자동 선택
         const selectedOptionElement = matchup.option1.text === '부전승입니다.' 
-            ? document.getElementById('option2') 
-            : document.getElementById('option1');
-        
-        // 승자를 winners 배열에 추가
+            ? option2Element 
+            : option1Element;
+
         const selectedOption = matchup.option1.text === '부전승입니다.' 
             ? matchup.option2 
             : matchup.option1;
+
+        // 승자를 winners 배열에 추가
         winners.push(selectedOption);
 
-        // 강조 효과 추가
+        // 클릭 효과 적용
         selectedOptionElement.querySelector('img').classList.add('selected');
 
-        // 일정 시간 대기 후 다음 매치업으로 이동
+        // 1초 동안 선택 효과 표시 후 다음 단계 진행
         setTimeout(() => {
             selectedOptionElement.querySelector('img').classList.remove('selected'); // 강조 효과 제거
             currentMatchupIndex++; // 다음 매치업으로 이동
@@ -102,6 +88,7 @@ function loadMatchup() {
             if (currentMatchupIndex < matchups.length) {
                 loadMatchup(); // 다음 매치업 로드
             } else {
+                // 라운드 종료 처리
                 if (winners.length === 1) {
                     // 최종 우승자 결정
                     localStorage.setItem("winnerText", winners[0].text);
@@ -115,31 +102,17 @@ function loadMatchup() {
                     loadMatchup(); // 첫 번째 매치업 로드
                 }
             }
-        }, 800); // 0.8초 대기 후 다음 단계 진행
+        }, 1000); // 1초 대기 후 다음 단계 진행
         return; // 부전승 처리 후 함수 종료
     }
 
     // 부전승이 없는 경우 클릭 활성화
-    document.getElementById('option1').style.pointerEvents = 'auto';
-    document.getElementById('option2').style.pointerEvents = 'auto';
-
-    // 부전승 이미지 처리
-    if (matchup.option1.text === '부전승입니다.') {
-        document.getElementById('option1').querySelector('img').classList.add('disabled');
-        document.getElementById('option1').style.pointerEvents = 'none';
-    } else {
-        document.getElementById('option1').querySelector('img').classList.remove('disabled');
-    }
-
-    if (matchup.option2.text === '부전승입니다.') {
-        document.getElementById('option2').querySelector('img').classList.add('disabled');
-        document.getElementById('option2').style.pointerEvents = 'none';
-    } else {
-        document.getElementById('option2').querySelector('img').classList.remove('disabled');
-    }
+    option1Element.style.pointerEvents = 'auto';
+    option2Element.style.pointerEvents = 'auto';
 
     updateRoundText(); // 라운드 텍스트 업데이트
 }
+
 
 // 이미지 클릭 이벤트 연결
 document.querySelectorAll('.matchup img').forEach(img => {
