@@ -46,7 +46,7 @@ function updateRoundText() {
     const currentMatchup = currentMatchupIndex + 1; // 현재 진행 중인 매치업
 
     // 라운드 텍스트에 진행 상태 표시 (예: 16강 (1/8), 2/8, ...)
-    document.getElementById('roundText').innerText = '현재 라운드: ${roundText} (${currentMatchup}/${totalMatchups})';
+    document.getElementById('roundText').innerText = '현재 라운드: '${roundText} (${currentMatchup}/${totalMatchups});
 }
 
 // 매치업 생성 함수 (모든 옵션 섞고 두 개씩 묶기)
