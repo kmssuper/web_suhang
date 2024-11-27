@@ -81,31 +81,41 @@ function loadMatchup() {
     // 부전승 처리
     if (matchup.option1.text === '부전승입니다.' || matchup.option2.text === '부전승입니다.') {
         // 부전승인 항목 자동 선택
-        const selectedOption = matchup.option1.text === '부전승입니다.' ? matchup.option2 : matchup.option1;
-
+        const selectedOptionElement = matchup.option1.text === '부전승입니다.' 
+            ? document.getElementById('option2') 
+            : document.getElementById('option1');
+        
         // 승자를 winners 배열에 추가
+        const selectedOption = matchup.option1.text === '부전승입니다.' 
+            ? matchup.option2 
+            : matchup.option1;
         winners.push(selectedOption);
 
-        // 다음 매치업으로 이동
-        currentMatchupIndex++;
+        // 강조 효과 추가
+        selectedOptionElement.querySelector('img').classList.add('selected');
 
-        // 다음 매치업 로드 또는 라운드 종료 처리
-        if (currentMatchupIndex < matchups.length) {
-            setTimeout(() => loadMatchup(), 500); // 0.5초 대기 후 다음 매치업 로드
-        } else {
-            if (winners.length === 1) {
-                // 최종 우승자가 결정된 경우
-                localStorage.setItem("winnerText", winners[0].text);
-                localStorage.setItem("winnerImage", winners[0].img);
-                window.location.href = "winner.html"; // 우승자 페이지로 이동
+        // 일정 시간 대기 후 다음 매치업으로 이동
+        setTimeout(() => {
+            selectedOptionElement.querySelector('img').classList.remove('selected'); // 강조 효과 제거
+            currentMatchupIndex++; // 다음 매치업으로 이동
+
+            if (currentMatchupIndex < matchups.length) {
+                loadMatchup(); // 다음 매치업 로드
             } else {
-                // 새 라운드 시작
-                matchups = createMatchups(winners);
-                winners = [];
-                currentMatchupIndex = 0;
-                setTimeout(() => loadMatchup(), 500); // 첫 번째 매치업 로드
+                if (winners.length === 1) {
+                    // 최종 우승자 결정
+                    localStorage.setItem("winnerText", winners[0].text);
+                    localStorage.setItem("winnerImage", winners[0].img);
+                    window.location.href = "winner.html";
+                } else {
+                    // 새 라운드 시작
+                    matchups = createMatchups(winners);
+                    winners = [];
+                    currentMatchupIndex = 0;
+                    loadMatchup(); // 첫 번째 매치업 로드
+                }
             }
-        }
+        }, 800); // 0.8초 대기 후 다음 단계 진행
         return; // 부전승 처리 후 함수 종료
     }
 
