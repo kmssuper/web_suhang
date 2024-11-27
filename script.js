@@ -27,29 +27,6 @@ let options = [
     { img: './과목 이미지/부전승.png', text: '부전승입니다.' },
 ];
 
-function updateRoundText() {
-    const totalMatchups = matchups.length; // 총 매치업 수
-    const remainingMatchups = Math.ceil(totalMatchups / 2); // 남은 매치업 수 (진행 중인 라운드의 매치업 수)
-    
-    // 라운드 이름을 매치업의 수에 따라 다르게 설정
-    let roundText;
-    if (totalMatchups === 8) {
-        roundText = "16강";
-    } else if (totalMatchups === 4) {
-        roundText = "8강";
-    } else if (totalMatchups === 2) {
-        roundText = "4강";
-    } else if (totalMatchups === 1) {
-        roundText = "결승";
-    }
-
-    // 진행 상태 텍스트 추가
-    const currentMatchup = currentMatchupIndex + 1; // 현재 진행 중인 매치업
-
-    // 라운드 텍스트에 진행 상태 표시 (예: 16강 (1/8), 2/8, ...)
-    document.getElementById('roundText').innerText = `현재 라운드: ${roundText} (${currentMatchup}/${totalMatchups})`;
-}
-
 function loadMatchup() {
     const matchup = matchups[currentMatchupIndex];
 
