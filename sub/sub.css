@@ -41,8 +41,8 @@ main {
 }
 
 .option img {
-    width: 290px;
-    height: 365px;
+    width: 282px;
+    height: 360px;
     object-fit: cover;
     border-radius: 10px;
 }
