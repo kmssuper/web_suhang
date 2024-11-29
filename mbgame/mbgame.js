@@ -8,22 +8,22 @@ function shuffleArray(array) {
 
 // 초기 데이터 (옵션들을 개별적으로 나열)
 let options = [
-    { img: './과목 이미지/물리.jpg', text: '물리' },
-    { img: './과목 이미지/수학.jpg', text: '수학' },
-    { img: './과목 이미지/영어.jpg', text: '영어' },
-    { img: './과목 이미지/웹.jpg', text: '웹 프로그래밍 실무' },
-    { img: './과목 이미지/일본.jpg', text: '일본어' },
-    { img: './과목 이미지/컴시일.jpg', text: '컴퓨터 시스템 일반' },
-    { img: './과목 이미지/자료.jpg', text: '자료구조' },
-    { img: './과목 이미지/한국사.jpg', text: '한국사' },
-    { img: './과목 이미지/정보.jpg', text: '정보' },
-    { img: './과목 이미지/한문.jpg', text: '한문' },
-    { img: './과목 이미지/중국.jpg', text: '중국어' },
-    { img: './과목 이미지/문학.jpg', text: '문학' },
-    { img: './과목 이미지/진로.png', text: '진로' },
-    { img: './과목 이미지/부전승.png', text: '부전승입니다.' },
-    { img: './과목 이미지/창체.png', text: '창체' },
-    { img: './과목 이미지/부전승.png', text: '부전승입니다.' },
+    { img: './모바일게임 이미지/.jpeg', text: '물리' },
+    { img: './모바일게임 이미지/.jpeg', text: '수학' },
+    { img: './모바일게임 이미지/.jpeg', text: '영어' },
+    { img: './모바일게임 이미지/.jpeg', text: '웹 프로그래밍 실무' },
+    { img: './모바일게임 이미지/.jpeg', text: '일본어' },
+    { img: './모바일게임 이미지/.jpeg', text: '컴퓨터 시스템 일반' },
+    { img: './모바일게임 이미지/.jpeg', text: '자료구조' },
+    { img: './모바일게임 이미지/.jpeg', text: '한국사' },
+    { img: './모바일게임 이미지/.jpeg', text: '정보' },
+    { img: './모바일게임 이미지/.jpeg', text: '한문' },
+    { img: './모바일게임 이미지/.jpeg', text: '중국어' },
+    { img: './모바일게임 이미지/.jpeg', text: '문학' },
+    { img: './모바일게임 이미지/.jpeg', text: '진로' },
+    { img: './모바일게임 이미지/.jpeg', text: '부전승입니다.' },
+    { img: './모바일게임 이미지/.jpeg', text: '창체' },
+    { img: './모바일게임 이미지/.jpeg', text: '부전승입니다.' },
 ];
 
 function updateRoundText() {
