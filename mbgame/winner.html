@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>최종 우승자</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            border: 3px solid black; 
+            padding: 20px 150px 20px 150px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #winnerText {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin: 10px 0;
+            border: 2px solid black;
+            display: inline-block;
+            padding: 10px;
+        }
+
+        #winnerImage {
+            width: 350px;
+            height: 450px;
+            margin-top: 20px;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>최종 우승자</h1>
+        <img id="winnerImage" src="" alt="우승자 이미지">
+        <p id="winnerText">우승자가 결정되었습니다!</p>
+        <div class="button-container">
+            <button onclick="location.href='./../index.html'">처음으로</button>
+            <button onclick="location.href='sub.html'">선택 화면으로</button>
+        </div>
+    </header>
+    
+    <script>
+        // localStorage에서 우승자 정보 가져오기
+        const winnerText = localStorage.getItem("winnerText");
+        const winnerImage = localStorage.getItem("winnerImage");
+
+        if (winnerText && winnerImage) {
+            document.getElementById("winnerText").innerText = `우승자는 "${winnerText}"입니다!`;
+            document.getElementById("winnerImage").src = winnerImage;
+        } else {
+            document.getElementById("winnerText").innerText = "우승자가 없습니다.";
+        }
+    </script>
+</body>
+</html>
