@@ -20,10 +20,10 @@ let options = [
     { img: './../pc게임 이미지/배그.jpg', text: '배틀그라운드' },
     { img: './../pc게임 이미지/서든어택.jpg', text: '서든어택' },
     { img: './../pc게임 이미지/스타.jpg', text: '스타크래프트' },
-    { img: './../pc게임 이미지/오버워치.png', text: '오버워치' },
-    { img: './../pc게임 이미지/이터널리턴.png', text: '이터널리턴' },
-    { img: './../pc게임 이미지/피파온라인.png', text: '피파온라인' },
-    { img: './과목 이미지/부전승.png', text: '부전승입니다.' },
+    { img: './../pc게임 이미지/오버워치.jpg', text: '오버워치' },
+    { img: './../pc게임 이미지/이터널리턴.jpg', text: '이터널리턴' },
+    { img: './../pc게임 이미지/피파온라인.jpg', text: '피파온라인' },
+    { img: './../pc게임 이미지/카트라이더.jpg', text: '카트라이더 },
 ];
 
 function updateRoundText() {
