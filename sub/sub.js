@@ -8,7 +8,7 @@ function shuffleArray(array) {
 
 // 초기 데이터 (옵션들을 개별적으로 나열)
 let options = [
-    { img: './과목 이미지/물리.jpg', text: '물리' },
+    { img: './../과목 이미지/물리.jpg', text: '물리' },
     { img: './과목 이미지/수학.jpg', text: '수학' },
     { img: './과목 이미지/영어.jpg', text: '영어' },
     { img: './과목 이미지/웹.jpg', text: '웹 프로그래밍 실무' },
