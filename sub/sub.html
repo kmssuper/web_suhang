@@ -6,13 +6,6 @@
     <title>이상형 월드컵</title>
     <link rel="stylesheet" href="sub.css">
     <style>
-        /* html, body 높이 100%로 설정 */
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
         .selected {
             transform: scale(1.1); /* 살짝 확대 */
             transition: transform 0.3s, box-shadow 0.3s; /* 부드러운 전환 효과 */
@@ -20,7 +13,7 @@
         }
 
         #vs {
-            font-family: Mungyeong-Gamhong-Apple;
+            font-family:Mungyeong-Gamhong-Apple;
             position: absolute;
             font-size: 50px;
             font-weight: bold;
@@ -31,18 +24,18 @@
         }
 
         @font-face {
-            font-family: 'GmarketSansMedium';
-            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
-        }
+    font-family: 'GmarketSansMedium';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
         @font-face {
-            font-family: 'Mungyeong-Gamhong-Apple';
-            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2410-2@1.0/Mungyeong-Gamhong-Apple.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
+    font-family: 'Mungyeong-Gamhong-Apple';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2410-2@1.0/Mungyeong-Gamhong-Apple.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 
         #nextRound {
             margin-top: 20px;
@@ -53,26 +46,6 @@
 
         .hidden {
             display: none;
-        }
-
-        main {
-            min-height: 100vh; /* 화면 높이를 100% 이상으로 설정 */
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* 중앙 정렬 */
-            align-items: center;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        section#matchup {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
         }
     </style>
 </head>
@@ -85,6 +58,7 @@
     <main>
         <div id="roundText" style="font-size: 20px; margin: 20px;"></div>
         <section id="matchup" class="matchup">
+        <div id="matchup" class="matchup">
             <div class="option" id="option1">
                 <img src="" alt="">
                 <p></p>
