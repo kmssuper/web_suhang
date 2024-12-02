@@ -9,9 +9,9 @@ function shuffleArray(array) {
 // 초기 데이터 (옵션들을 개별적으로 나열)
 let options = [
     { img: './image/던전앤파이터.jpg', text: '던전앤파이터' },
-    { img: './../PC게임 이미지/디아블로.jpg', text: '디아블로' },
-    { img: './../PC게임 이미지/로블록스.jpeg', text: '로블록스' },
-    { img: './../PC게임 이미지/로스트아크.jpg', text: '로스트아크' },
+    { img: './image/디아블로.jpg', text: '디아블로' },
+    { img: './image/로블록스.jpeg', text: '로블록스' },
+    { img: './image/로스트아크.jpg', text: '로스트아크' },
     { img: './../PC게임 이미지/롤토체스.jpg', text: '롤토체스' },
     { img: './../PC게임 이미지/리그오브레전드.webp', text: '리그오브레전드' },
     { img: './../PC게임 이미지/리니지.jpg', text: '리니지' },
