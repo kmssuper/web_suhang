@@ -5,6 +5,11 @@ body {
     background-color: #f4f4f4;
 }
 
+html, body {
+    overflow: hidden;
+    height: 100%;
+}
+
 header {
     background: linear-gradient(135deg, #63cff5, #9691f5); 
     color: white;
