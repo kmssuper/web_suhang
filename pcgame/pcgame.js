@@ -63,7 +63,6 @@ function createMatchups(options) {
 
 // 초기 매치업 생성
 let matchups = createMatchups(options);
-
 let currentMatchupIndex = 0; // 현재 진행 중인 매치업
 let winners = []; // 각 라운드에서 선택된 승자
 
