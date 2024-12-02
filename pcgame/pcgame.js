@@ -23,7 +23,7 @@ let options = [
     { img: './image/오버워치.webp', text: '오버워치' },
     { img: './image/이터널리턴.webp', text: '이터널리턴' },
     { img: './image/피파온라인.jpg', text: '피파온라인' },
-    { img: './image/카트라이더.jpg', text: '카트라이더 },
+    { img: './image/카트라이더.jpg', text: '카트라이더' },
 ];
 
 function updateRoundText() {
