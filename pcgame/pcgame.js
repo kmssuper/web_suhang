@@ -63,6 +63,7 @@ function createMatchups(options) {
 
 // 초기 매치업 생성
 let matchups = createMatchups(options);
+
 let currentMatchupIndex = 0; // 현재 진행 중인 매치업
 let winners = []; // 각 라운드에서 선택된 승자
 
@@ -159,7 +160,7 @@ document.querySelectorAll('.matchup img').forEach(img => {
                     localStorage.setItem("winnerImage", winners[0].img);
 
                     // 우승자 페이지로 이동
-                    window.location.href = "winner.html";
+                    window.location.href = "./winner.html";
                 } else {
                     // 라운드를 새로 시작하면서 매치업을 다시 생성
                     matchups = createMatchups(winners);
