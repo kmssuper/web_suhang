@@ -23,7 +23,7 @@ let options = [
     { img: './모바일게임 이미지/좀비고.jpeg', text: '좀비고' },
     { img: './모바일게임 이미지/카트라이더.jpeg', text: '카트라이더' },
     { img: './모바일게임 이미지/쿠키런.jpeg', text: '쿠키런' },
-    { img: './모바일게임 이미지/클래시로얄.jpeg', text: '클래시로얄' },
+    { img: './모바일게임 이미지/클래시로얄.png', text: '클래시로얄' },
 ];
 
 function updateRoundText() {
