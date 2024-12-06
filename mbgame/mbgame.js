@@ -8,7 +8,7 @@ function shuffleArray(array) {
 
 // 초기 데이터 (옵션들을 개별적으로 나열)
 let options = [
-    { img: './모바일게임 이미지/냥코.jpg', text: '냥코' },
+    { img: './모바일게임 이미지/냥코.png', text: '냥코' },
     { img: './모바일게임 이미지/라이더.jpg', text: '라이더' },
     { img: './모바일게임 이미지/마인크래프트.png', text: '마인크래프트' },
     { img: './모바일게임 이미지/마피아.png', text: '마피아' },
