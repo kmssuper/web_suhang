@@ -6,7 +6,6 @@
     <title>최종 우승자</title>
     <style>
         body {
-            background-image: './image/download.webp' ;
             font-family: Arial, sans-serif;
             text-align: center;
             display: flex;
@@ -16,8 +15,13 @@
             margin: 0;
             background-color: #f4f4f4;
         }
+
         
-            header {
+        html, body {
+            overflow: hidden;
+            height: 100%;
+        }
+        header {
             border: 3px solid black; 
             padding: 20px 150px 20px 150px;
             background-color: white;
@@ -26,15 +30,6 @@
             flex-direction: column;
             align-items: center;
         }
-
-
-        #winnerImage {
-            width: 640px;
-            height: 360px;
-            margin-top: 20px;
-        }
-
-         
 
         #winnerText {
             font-size: 24px;
@@ -45,7 +40,12 @@
             display: inline-block;
             padding: 10px;
         }
-        
+
+        #winnerImage {
+            width: 350px;
+            height: 450px;
+            margin-top: 20px;
+        }
         .button-container {
             margin-top: 20px;
         }
@@ -74,7 +74,7 @@
         <p id="winnerText">우승자가 결정되었습니다!</p>
         <div class="button-container">
             <button onclick="location.href='./../index.html'">처음으로</button>
-            <button onclick="location.href='pcgame.html'">선택 화면으로</button>
+            <button onclick="location.href='sub.html'">선택 화면으로</button>
         </div>
     </header>
     
@@ -84,7 +84,7 @@
         const winnerImage = localStorage.getItem("winnerImage");
 
         if (winnerText && winnerImage) {
-            document.getElementById("winnerText").innerText = 우승자는 "${winnerText}"입니다!;
+            document.getElementById("winnerText").innerText = `우승자는 "${winnerText}"입니다!`;
             document.getElementById("winnerImage").src = winnerImage;
         } else {
             document.getElementById("winnerText").innerText = "우승자가 없습니다.";
@@ -92,4 +92,3 @@
     </script>
 </body>
 </html>
-
