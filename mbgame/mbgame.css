@@ -24,6 +24,7 @@ main {
     align-items: center;
     background-color: #abcdf5;
     padding: 20px;
+    min-height: 100vh;
 }
 
 .matchup {
